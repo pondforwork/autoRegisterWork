@@ -5,7 +5,7 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 import pyautogui as pg
 
-def clickUploadPDF(path):
+def clickonimage(path):
     print("Wait Page Load")
     time.sleep(1.5)
     try:
@@ -18,6 +18,22 @@ def clickUploadPDF(path):
             print("Image not found.")
     except Exception as e:
             print("An error occurred:", str(e))
+
+def doubleclickonimage(path):
+    print("Wait Page Load")
+    time.sleep(1.5)
+    try:
+        img_location = pg.locateOnScreen(path, confidence=0.8)
+        if img_location:
+            print("Image found at:", img_location)
+            pg.moveTo(img_location)
+            pg.click()
+            pg.doubleClick()
+        else:
+            print("Image not found.")
+    except Exception as e:
+            print("An error occurred:", str(e))
+
 
 def clickChangePath(path):
     print("Wait Page Load")
@@ -64,8 +80,8 @@ driver.get("https://e-workpermit.doe.go.th/CLMV-WEB/main.php?menu=manageemp")
 deleteEmployerdocbtn = driver.find_element(By.XPATH, "/html/body/form/div[2]/div[2]/div/div/div/div[2]/div/div/div/div[7]/div/div/table/tbody/tr/td[3]/table/tbody/tr/td/div/span[2]/div[2]")
 deleteEmployerdocbtn.click()
 time.sleep(2)
-clickUploadPDF(r'image\fileuploadbtn.png')
-clickUploadPDF(r'image\documentsbtn.png')
+clickonimage(r'image\fileuploadbtn.png')
+clickonimage(r'image\documentsbtn.png')
 
 
 clickChangePath(r'image\changepathbtn.png')
@@ -73,6 +89,12 @@ clickChangePath(r'image\changepathbtn.png')
 typeWord(r'C:\Users\Pond\Documents\Python\eworkpermitSelenium\image')
 pg.press('enter')
 
+doubleclickonimage(r'image\employer.png')
 
+
+time.sleep(1.5)
+savebtn = driver.find_element(By.XPATH, "/html/body/form/div[2]/div[2]/div/div/div/div[2]/div/div/div/div[8]/div[3]/button")
+savebtn.click()
+print("saved")
 
 
