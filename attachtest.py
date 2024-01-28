@@ -34,6 +34,8 @@ def clickChangePath(path):
     except Exception as e:
             print("An error occurred:", str(e))
 
+def typeWord(word):
+     pg.typewrite(word)
 
 myoptions = webdriver.ChromeOptions()
 myoptions.add_experimental_option("detach",True)
@@ -62,11 +64,15 @@ driver.get("https://e-workpermit.doe.go.th/CLMV-WEB/main.php?menu=manageemp")
 deleteEmployerdocbtn = driver.find_element(By.XPATH, "/html/body/form/div[2]/div[2]/div/div/div/div[2]/div/div/div/div[7]/div/div/table/tbody/tr/td[3]/table/tbody/tr/td/div/span[2]/div[2]")
 deleteEmployerdocbtn.click()
 time.sleep(2)
-clickUploadPDF(r'image\uploadPDFbtn.png')
-clickUploadPDF(r'image\documentBTN.png')
-#clickUploadPDF(r'image\changePath.png')
+clickUploadPDF(r'image\fileuploadbtn.png')
+clickUploadPDF(r'image\documentsbtn.png')
 
-clickChangePath(r'image\changePath.png')
+
+clickChangePath(r'image\changepathbtn.png')
+
+typeWord(r'C:\Users\Pond\Documents\Python\eworkpermitSelenium\image')
+pg.press('enter')
+
 
 
 

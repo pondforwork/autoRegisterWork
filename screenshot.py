@@ -1,3 +1,3 @@
 import pyautogui as pg
 
-pg.screenshot('finduploadbtn.png')
+pg.screenshot('screenshot.png')
