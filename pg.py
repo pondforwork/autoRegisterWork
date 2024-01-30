@@ -1,12 +1,20 @@
 import time
 import pyautogui as pg
 
-import keyboard
+def selectfolder(personNo):
+    personNoString = str(personNo)
+    print("Wait Page Load")
+    time.sleep(1.5)
+    try:
+        img_location = pg.locateOnScreen(fr'image\person{personNoString}.png', confidence=0.97)
+        if img_location:
+            print("Image found at:", img_location)
+            pg.moveTo(img_location)
+            pg.click()
+            pg.doubleClick()
+        else:
+            print("Image not found.")
+    except Exception as e:
+            print("An error occurred:", str(e))
 
-def type_thai(text):
-    keyboard.write(text)
-    time.sleep(1)  # Add a delay to allow the text to be input
-
-# Example usage
-text_to_type = "สวัสดี, ยินดีที่ได้รู้จัก"
-type_thai(text_to_type)สวัสดี, ยินดีที่ได้รู้จัก
+selectfolder(2)
