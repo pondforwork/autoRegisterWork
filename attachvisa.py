@@ -95,7 +95,15 @@ def redirectTo(redirectTo):
           driver.get("https://e-workpermit.doe.go.th/CLMV-WEB/main.php?menu=reqhealthext")
      elif(redirectTo == "bt50"):
           print("bt50")
+
+def inserteEmpId(employeeid):
+     employeeId = driver.find_element(By.XPATH, "/html/body/form/div[2]/div[2]/div/div/div/div[2]/div/div/div/div[7]/div[2]/input")
+     employeeId.send_keys(employeeid)
+     searchBtn = driver.find_element(By.XPATH, "/html/body/form/div[2]/div[2]/div/div/div/div[2]/div/div/div/div[8]/div[2]/button")
+     searchBtn.click()
      
+    
 
 openAndLogin("1101401499748","499748","employer")
 redirectTo("visa")
+inserteEmpId("12324234589")
