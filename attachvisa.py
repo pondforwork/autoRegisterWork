@@ -96,14 +96,53 @@ def redirectTo(redirectTo):
      elif(redirectTo == "bt50"):
           print("bt50")
 
-def inserteEmpId(employeeid):
+def inserteEmpIdANDSelect(employeeid):
      employeeId = driver.find_element(By.XPATH, "/html/body/form/div[2]/div[2]/div/div/div/div[2]/div/div/div/div[7]/div[2]/input")
      employeeId.send_keys(employeeid)
      searchBtn = driver.find_element(By.XPATH, "/html/body/form/div[2]/div[2]/div/div/div/div[2]/div/div/div/div[8]/div[2]/button")
      searchBtn.click()
-     
-    
+     selectRadio = driver.find_element(By.XPATH, "/html/body/form/div[2]/div[2]/div/div/div/div[2]/div/div/div/div[10]/div/div/table/tbody/tr/td[1]/input")
+     selectRadio.click()
+     selectBTN = driver.find_element(By.XPATH, "/html/body/form/div[2]/div[2]/div/div/div/div[2]/div/div/div/div[12]/div[3]/button")
+     selectBTN.click()
 
-openAndLogin("1101401499748","499748","employer")
+def insertAddressData():
+     addressWithEmployerRadio = driver.find_element(By.XPATH, "/html/body/form/div[2]/div[2]/div/div/div/div[2]/div/div/div/div[17]/div[2]/div/label[1]")
+     addressWithEmployerRadio.click()
+     print("with Employer")
+
+def insertPassportData(documentType,docId,docOutFrom,startDate,endDate):
+     document = driver.find_element(By.XPATH, "/html/body/form/div[2]/div[2]/div/div/div/div[2]/div/div/div/div[25]/div[2]/div/label[3]")
+     document.click()
+     documentId = driver.find_element(By.XPATH, "/html/body/form/div[2]/div[2]/div/div/div/div[2]/div/div/div/div[26]/div[2]/input")
+     documentId.send_keys(docId)
+     documentOutFrom = driver.find_element(By.XPATH, "/html/body/form/div[2]/div[2]/div/div/div/div[2]/div/div/div/div[27]/div[2]/input")
+     documentOutFrom.send_keys(docOutFrom)
+     documentStartDate = driver.find_element(By.XPATH, "/html/body/form/div[2]/div[2]/div/div/div/div[2]/div/div/div/div[28]/div[2]/input")
+     documentStartDate.send_keys(startDate)
+     documentEndDate = driver.find_element(By.XPATH, "/html/body/form/div[2]/div[2]/div/div/div/div[2]/div/div/div/div[28]/div[5]/input")
+     documentEndDate.send_keys(endDate)
+     
+     
+def insertVisaData(visanum,visaOut,visaExpDate,visaoutfromwhere):
+      visaNumber = driver.find_element(By.XPATH, "/html/body/form/div[2]/div[2]/div/div/div/div[2]/div/div/div/div[30]/div[5]/input")
+      visaNumber.send_keys(visanum)
+      visaOutDate = driver.find_element(By.XPATH, "/html/body/form/div[2]/div[2]/div/div/div/div[2]/div/div/div/div[31]/div[2]/input")
+      visaOutDate.send_keys(visaOut)
+      visaExpireDate = driver.find_element(By.XPATH, "/html/body/form/div[2]/div[2]/div/div/div/div[2]/div/div/div/div[31]/div[5]/input")
+      visaExpireDate.send_keys(visaExpDate)
+      visaOutFrom = driver.find_element(By.XPATH, "/html/body/form/div[2]/div[2]/div/div/div/div[2]/div/div/div/div[32]/div[2]/input")
+      visaOutFrom.send_keys(visaoutfromwhere)
+      stayUntil = driver.find_element(By.XPATH, "/html/body/form/div[2]/div[2]/div/div/div/div[2]/div/div/div/div[32]/div[5]/input")
+      stayUntil.send_keys(visaExpDate)
+     
+      
+
+
+openAndLogin("3140900242144","242144","employer")
 redirectTo("visa")
-inserteEmpId("12324234589")
+inserteEmpIdANDSelect("0023031078501")
+insertAddressData()
+insertPassportData(1,"T0776432","MIN PHNOM PENH","16/01/2023","16/01/2028")
+insertVisaData("2995/67","12/1/2024","13/02/2025","CHACHOENGSAO IMMIGRATION OFFICE")
+
