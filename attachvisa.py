@@ -4,6 +4,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 import pyautogui as pg
+import keyboard
 
 def clickonimage(path):
     print("Wait Page Load")
@@ -19,11 +20,43 @@ def clickonimage(path):
     except Exception as e:
             print("An error occurred:", str(e))
 
-def doubleclickonimage(path):
+
+def SelectBT46():
     print("Wait Page Load")
     time.sleep(1.5)
     try:
-        img_location = pg.locateOnScreen(path, confidence=0.8)
+        img_location = pg.locateOnScreen(fr'image\46.png', confidence=0.8)
+        if img_location:
+            print("Image found at:", img_location)
+            pg.moveTo(img_location)
+            pg.click()
+            pg.doubleClick()
+        else:
+            print("Image not found.")
+    except Exception as e:
+            print("An error occurred:", str(e))
+
+def SelectPassport():
+    print("Wait Page Load")
+    time.sleep(1.5)
+    try:
+        img_location = pg.locateOnScreen(fr'image\pass.png', confidence=0.8)
+        if img_location:
+            print("Image found at:", img_location)
+            pg.moveTo(img_location)
+            pg.click()
+            pg.doubleClick()
+        else:
+            print("Image not found.")
+    except Exception as e:
+            print("An error occurred:", str(e))
+
+def selectfolder(personNo):
+    personNoString = str(personNo)
+    print("Wait Page Load")
+    time.sleep(1.5)
+    try:
+        img_location = pg.locateOnScreen(fr'image\person{personNoString}.png', confidence=0.9)
         if img_location:
             print("Image found at:", img_location)
             pg.moveTo(img_location)
@@ -136,7 +169,59 @@ def insertVisaData(visanum,visaOut,visaExpDate,visaoutfromwhere):
       stayUntil = driver.find_element(By.XPATH, "/html/body/form/div[2]/div[2]/div/div/div/div[2]/div/div/div/div[32]/div[5]/input")
       stayUntil.send_keys(visaExpDate)
      
+def moveMouseandpressEnd():
+     pg.moveTo(109,270)
+     pg.click()
+     pg.press('end')
+
+
+def clickuploadPassport(): 
+     try:
+          img_location = pg.locateOnScreen(r'image\insertpassportBtn.png', confidence=0.8) 
+          if img_location:
+               print("Image found at:", img_location)
+               pg.moveTo(img_location)
+               pg.move(600,0)
+               pg.leftClick()
+          else:
+               print("Image not found.")
+     except Exception as e:
+      print("An error occurred:", str(e))
       
+
+
+def clickuploadVisa(): 
+     try:
+          img_location = pg.locateOnScreen(r'image\insertvisaBtn.png', confidence=0.8) 
+          if img_location:
+               print("Image found at:", img_location)
+               pg.moveTo(img_location)
+               pg.move(600,0)
+               pg.leftClick()
+          else:
+               print("Image not found.")
+     except Exception as e:
+      print("An error occurred:", str(e))
+
+
+def typeWord(word):
+     keyboard.write(word)
+
+def clickChangePath(path):
+    print("Wait Page Load")
+    time.sleep(1.5)
+    try:
+        img_location = pg.locateOnScreen(path, confidence=0.8)
+        if img_location:
+            print("Image found at:", img_location)
+            pg.moveTo(img_location)
+            pg.move(50, 0)
+            pg.click()
+        else:
+            print("Image not found.")
+    except Exception as e:
+            print("An error occurred:", str(e))
+   
 
 
 openAndLogin("3140900242144","242144","employer")
@@ -145,4 +230,32 @@ inserteEmpIdANDSelect("0023031078501")
 insertAddressData()
 insertPassportData(1,"T0776432","MIN PHNOM PENH","16/01/2023","16/01/2028")
 insertVisaData("2995/67","12/1/2024","13/02/2025","CHACHOENGSAO IMMIGRATION OFFICE")
+moveMouseandpressEnd()
+time.sleep(0.3)
+
+clickuploadPassport()
+time.sleep(0.3)
+clickonimage(r'image\documentsbtn.png')
+clickChangePath(r'image\changepathbtn.png')
+typeWord(r"C:\Users\Pond\Documents\งานต่างด้าว\ต่อวีซ่า\สุดาภรณ์")
+pg.press('enter')
+selectfolder(1)
+pg.moveTo(979, 423)
+SelectPassport
+
+clickuploadVisa()
+time.sleep(0.3)
+clickonimage(r'image\documentsbtn.png')
+clickChangePath(r'image\changepathbtn.png')
+typeWord(r"C:\Users\Pond\Documents\งานต่างด้าว\ต่อวีซ่า\สุดาภรณ์")
+pg.press('enter')
+selectfolder(1)
+pg.moveTo(979, 423)
+SelectPassport()
+
+
+#SelectBT46()
+
+
+
 
