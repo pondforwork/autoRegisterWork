@@ -79,5 +79,5 @@ driver.get("https://e-workpermit.doe.go.th/CLMV-WEB/main.php?menu=paymentext&sme
 
 # checkallBtn = driver.find_element(By.XPATH, "/html/body/form/div[2]/div[2]/div/div/div/div[2]/div/div/div/div[7]/div/div/table/thead/tr/th[1]/label")
 # checkallBtn.click()
-time.sleep(1)
+# time.sleep(0.5)
 clickonimage(r'image\checkall.png')
